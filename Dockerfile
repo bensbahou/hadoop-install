@@ -14,6 +14,7 @@ RUN yum install wget -y
 RUN yum install passwd -y
 RUN yum install which -y
 RUN yum install ncurses -y
+RUN yum install git -y
 
 RUN wget https://github.com/frekele/oracle-java/releases/download/8u212-b10/jdk-8u212-linux-x64.tar.gz
 RUN tar -zxvf jdk-8u212-linux-x64.tar.gz
@@ -47,4 +48,11 @@ ENV JAVA_HOME=/usr/java/
 RUN mkdir -p /opt/hadoop/hadoopdata/namenode
 RUN mkdir -p /opt/hadoop/hadoopdata/datanode
 
-#RUN cd $HADOOP_HOME/etc/hadoop
+RUN cd $HADOOP_HOME/etc/hadoop
+RUN git clone https://github.com/bensbahou/hadoop-install.git
+
+RUN cp hadoop-install/files/core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+RUN cp hadoop-install/files/hdfs-site.xml $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+RUN cp hadoop-install/files/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+RUN cp hadoop-install/files/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
+
