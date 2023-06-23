@@ -101,9 +101,11 @@ Edit yarn-site.xml
 	 </property>
 	</configuration>
 #su - hduser
+
+###############  cd $HADOOP_HOME/etc/hadoop
 --Formatage du Namenode
 #hdfs namenode -format
-
+###########################   hdfs namenode -format && start-dfs.sh
 --Démmarage des services hdfs et yarn
 #start-dfs.sh
 #start-yarn.sh
